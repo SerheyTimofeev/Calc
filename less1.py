@@ -44,8 +44,8 @@ while True:
     except ZeroDivisionError:
         print("You can't divide to 0")
         continue
-    except (ZeroDivisionError, ValueError):
-        print("Sorry, the system is busy right now. Try again later")
+    except Exception:
+        print("Opps! Something went wrong :(")
         continue
 
     print("Your answer: ", result)
