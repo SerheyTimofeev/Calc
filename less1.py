@@ -49,3 +49,8 @@ while True:
         continue
 
     print("Your answer: ", result)
+    answer = input("Do you want to continue? (y/n)")
+    if answer == "y":
+        continue
+    else:
+        break
