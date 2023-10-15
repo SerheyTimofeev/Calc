@@ -50,7 +50,7 @@ while True:
 
     print("Your answer: ", result)
     answer = input("Do you want to continue? (y/n)")
-    if answer == "y":
+    if answer.lower() == "y":
         continue
     else:
         break
