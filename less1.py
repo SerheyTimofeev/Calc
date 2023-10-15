@@ -18,7 +18,7 @@ while True:
     try:
         number_1 = int(input("Please type a number: "))
         if operator != "7":
-            number_2 = int(input("Ple1ase type another number: "))
+            number_2 = int(input("Please type another number: "))
         if operator == "1":
             result = number_1 + number_2
         elif operator == "2":
