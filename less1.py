@@ -32,7 +32,7 @@ while True:
         elif operator == "6":
             result = number_1 // number_2
         elif operator == "7":
-            result = number_1 // number_2
+            result = number_1 ** 0.5
         elif operator == "8":
             result = number_1 % number_2
         else:
