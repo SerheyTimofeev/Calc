@@ -6,9 +6,13 @@
 #         co += 1
 # print(co)
 
+# new = [i for i in str(num) if i == "0"]
+# print(len(new))
+
 ##############
-num = 100500
-co = 0
+
+# num = 100500
+# co = 0
 
 # for i in str(num)[::-1]:
 #     if i == "0":
