@@ -40,6 +40,6 @@
 #         return result
 # print(get_dates_authors("authors.txt"))
 
-#########
+#############
 
 
