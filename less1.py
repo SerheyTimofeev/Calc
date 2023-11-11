@@ -1,3 +1,5 @@
+import math
+
 while True:
     operator = input("Operators: \n "
                      "1 '+'\n "
@@ -11,7 +13,7 @@ while True:
                      "exit 'Exit from program'\n "
                      "Please choose an operator: ")
     if operator not in ["1", "2", "3", "4", "5", "6", "7", "8"]:
-        print("Can not find operator")
+        print("Can not fresultind operator")
         continue
     if operator == "exit":
         break
@@ -32,7 +34,11 @@ while True:
         elif operator == "6":
             result = number_1 // number_2
         elif operator == "7":
-            result = number_1 ** 0.5
+            try:
+                result = math.sqrt(number_1)
+            except ValueError:
+                print("Number should be positive")
+                continue
         elif operator == "8":
             result = number_1 % number_2
         else:

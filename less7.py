@@ -47,8 +47,9 @@
 
 ##################
 
-# my_str = "k 78 hh 65 kj 80"
-# my_list = my_str.split(" ")
+# my_str = "k 78, hh 65 kj 80"
+# my_list = my_str.replace(",", " ").split(" ")
+# print(my_list)
 # sum = 0
 # for i in my_list:
 #     if i.isdigit():
@@ -58,7 +59,7 @@
 # print(sum)
 
 #################
-
+#
 # my_list = [2, 4, 1, 5, 3, 9, 0, 7]
 # count = 0
 # for index, value in enumerate(my_list):
@@ -82,12 +83,12 @@
 
 # my_str = "gygygpo"
 # new = []
-# for i in my_str:
+# for i in set(my_str):
 #     if my_str.count(i) < 2:
 #         new.append(i)
 # print(new)
 
-#list comprehension
+# list comprehension
 
 # new = [i for i in my_str if my_str.count(i) < 2]
 # print(new)
@@ -106,8 +107,6 @@
 # my_str_1 = "aaaasdf1"
 # my_str_2 = "asdfff2"
 # new_set_1 = {i for i in my_str_1 if my_str_1.count(i) < 2}
-#
 # new_set_2 = {i for i in my_str_2 if my_str_2.count(i) < 2}
 # result = list(new_set_1.intersection(new_set_2))
 # print(result)
-

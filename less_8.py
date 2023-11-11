@@ -56,6 +56,7 @@
 # print(avg_age)
 #
 #
+
 my_dict_1 = {
     "key": "value2",
     "key1": "value1",
@@ -78,10 +79,10 @@ my_dict_2 = {
 # result_dict = {key: value for key, value in my_dict_1.items() if key in diff_keys}
 # print(result_dict)
 #
-# union_dict = my_dict_1.copy()
-# for key, value in my_dict_2.items():
-#     if union_dict.get(key):
-#         union_dict[key] = [union_dict[key], value]
-#     else:
-#         union_dict[key]=value
-# print(union_dict)
+union_dict = my_dict_1.copy()
+for key, value in my_dict_2.items():
+    if union_dict.get(key):
+        union_dict[key] = [union_dict[key], value]
+    else:
+        union_dict[key] = value
+print(union_dict)

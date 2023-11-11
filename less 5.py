@@ -40,12 +40,12 @@
 #         break
 #     print(index)
 # #########
-s = "1234hh567"
-start_index = s.find("h")
-end_index = s.rfind("h")
-print(start_index)
-print(end_index)
-if start_index == -1 or start_index == end_index:
-    print(s)
-else:
-    print(s[:start_index + 1] + s[start_index + 1:end_index].replace("h", "H") + s[end_index:])
+# s = "1234hh567"
+# start_index = s.find("h")
+# end_index = s.rfind("h")
+# print(start_index)
+# print(end_index)
+# if start_index == -1 or start_index == end_index:
+#     print(s)
+# else:
+#     print(s[:start_index + 1] + s[start_index + 1:end_index].replace("h", "H") + s[end_index:])
