@@ -4,7 +4,6 @@ from argparse import ArgumentParser
 
 
 class Trader:
-
     config = "config.json"
     system = "system.json"
 
@@ -34,7 +33,7 @@ class Trader:
         return self.price
 
     def next_price(self):
-        self.price = random.uniform(self.price - self.delta, self.price + self.delta)
+        self.price = round(random.uniform(self.price - self.delta, self.price + self.delta), 2)
         self.update_history("next")
 
     def get_available_usd(self):
@@ -49,35 +48,34 @@ class Trader:
         print(f"usd:{self.get_available_usd()}")
         print(f"uah:{self.get_available_uah()}")
 
-    def buy_usd(self,amount):
-        sum = round(amount * self.price)
-        if sum > self.available_uah:
+    def buy_usd(self, amount):
+        actual_sum = round(amount * self.price)
+        if actual_sum > self.available_uah:
             self.update_history("fail buy")
-            print(f"UNAVAILABLE, REQUIRED BALANCE UAH {sum}, AVAILABLE {self.available_uah}")
+            print(f"UNAVAILABLE, REQUIRED BALANCE UAH {actual_sum}, AVAILABLE {self.available_uah}")
             return
-        self.available_uah -= sum
+        self.available_uah -= actual_sum
         self.available_usd += amount
-        print(self.available_uah)
         self.update_history("buy")
 
     def buy_all_usd(self):
-        sum = round(self.available_uah / self.price, 2)
+        actual_sum = round(self.available_uah / self.price, 2)
         self.available_uah = 0
-        self.available_usd += sum
+        self.available_usd += actual_sum
         self.update_history("buy all")
 
     def sell_usd(self, amount):
         if amount > self.available_usd:
             self.update_history("fail sell")
             return f"UNAVAILABLE, REQUIRED BALANCE USD {amount}, AVAILABLE {self.available_usd}"
-        sum = amount * self.price
-        self.available_uah += sum
+        actual_sum = amount * self.price
+        self.available_uah += actual_sum
         self.available_usd -= amount
         self.update_history("sell")
 
     def sell_all_usd(self):
-        sum = round(self.price * self.available_usd, 2)
-        self.available_uah += sum
+        actual_sum = round(self.price * self.available_usd, 2)
+        self.available_uah += actual_sum
         self.available_usd = 0
         self.update_history("sell all")
 
@@ -91,26 +89,38 @@ class Trader:
             }
         ]
         with open(self.system, 'w') as f:
-            # f.seek(0)
             json.dump(data, f)
 
-# args = ArgumentParser()
-#
-# action_choices = ["RATE", "AVAILABLE", "BUY"]
-# args.add_argument(choices=action_choices, type=str)
-# args.add_argument("RATE", type=str)
-# args.add_argument("AVAILABLE", type=str)
-# args.add_argument("BUY", nargs="?", type=int, default=0)
-# args.add_argument("SELL", nargs="?", type=int, default=0)
-# args.add_argument("SELL ALL", type=str)
-# args.add_argument("BUY ALL", type=str)
-# args.add_argument("NEXT", type=str)
-# args.add_argument("RESTART", type=str)
-#
-#
-# args = vars(args.parse_args())
-#
-# print(args)
-# print(args['name'])
 
+args = ArgumentParser()
 
+args.add_argument("main_command", type=str, choices=["NEXT", "RATE", "AVAILABLE", "SELL", "BUY", "RESTART"])
+args.add_argument("another_command", nargs="?", type=str, default=0)
+
+args = vars(args.parse_args())
+
+command_action = args['main_command']
+command_amount = args['another_command']
+trader = Trader()
+if command_action == "RATE":
+    trader.rate()
+elif command_action == "NEXT":
+    trader.next_price()
+elif command_action == "AVAILABLE":
+    trader.print_available()
+elif command_action == "RESTART":
+    trader.restart()
+elif command_action == "BUY":
+    if not command_amount:
+        print("Amount is required")
+    if command_amount == "ALL":
+        trader.buy_all_usd()
+    else:
+        trader.buy_usd(float(command_amount))
+elif command_amount == "SELL":
+    if not command_amount:
+        print("Amount is required")
+    if command_amount == "ALL":
+        trader.sell_all_usd()
+    else:
+        trader.sell_usd(float(command_amount))
