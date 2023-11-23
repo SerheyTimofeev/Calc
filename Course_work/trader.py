@@ -10,7 +10,10 @@ class Trader:
 
     def __init__(self):
         with open(self.config, 'r') as f:
-            config_data = json.load(f)
+            try:
+                config_data = json.load(f)
+            except JSONDecodeError:
+                config_data = {"delta": 0.5}
             self.delta = config_data.get("delta")
         with open(self.system, 'r') as f:
             try:
