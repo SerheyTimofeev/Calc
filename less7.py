@@ -47,16 +47,19 @@
 
 ##################
 
-# my_str = "k 78, hh 65 kj 80"
-# my_list = my_str.replace(",", " ").split(" ")
-# print(my_list)
-# sum = 0
-# for i in my_list:
-#     if i.isdigit():
-#         sum += int(i)
-#     else:
-#         continue
-# print(sum)
+my_str = "k 78, hh 65 kj 80"
+simbols = [",", ".", "!", "#", "$""%", "^", "&", "*", ":", ";""/", "|", "(", ")", "_", "-", "+", "."]
+for s in simbols:
+    my_str = my_str.replace(s, " ")
+my_list = my_str.replace(",", " ").split(" ")
+print(my_list)
+sum = 0
+for i in my_list:
+    if i.isdigit():
+        sum += int(i)
+    else:
+        continue
+print(sum)
 
 #################
 #
